@@ -9,7 +9,7 @@ def minOperations(n):
     copyi = 0
     pastei = 0
     """multiple paste"""
-    factory = 1
+    factory = 2
     """edge case: 0 or 1"""
     if n < 2:
         return 0

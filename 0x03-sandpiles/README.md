@@ -1,5 +1,6 @@
 # 0x03. Sandpiles
 Introduction of sandpiles: https://www.youtube.com/watch?v=1MtEUErz7Gg
+
 Write a function that computes the sum of two sandpiles
 
  - Prototype: void sandpiles_sum(int grid1[3][3], int grid2[3][3]);
@@ -13,30 +14,45 @@ Write a function that computes the sum of two sandpiles
 
 **Example:**
 
-3 3 3   1 3 1
-3 3 3 + 3 3 3
-3 3 3   1 3 1
-=
+3 3 3\
+3 3 3\
+3 3 3\
++\
+1 3 1\
+3 3 3\
+1 3 1
+
+=\
+4 6 4\
+6 6 6\
 4 6 4
-6 6 6
-4 6 4
+
 =
+
+2 5 2\
+5 6 5\
 2 5 2
-5 6 5
-2 5 2
+
 =
+
+4 2 4\
+2 6 2\
 4 2 4
-2 6 2
-4 2 4
+
 =
+
+0 5 0\
+5 2 5\
 0 5 0
-5 2 5
-0 5 0
+
 =
+
+2 1 2\
+1 6 1\
 2 1 2
-1 6 1
-2 1 2
+
 =
-2 2 2
-2 2 2
+
+2 2 2\
+2 2 2\
 2 2 2

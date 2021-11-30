@@ -12,6 +12,7 @@ Write a function that computes the sum of two sandpiles
 **Compiling command:** gcc -Wall -Wextra -Werror -pedantic 0-main.c 0-sandpiles.c -o 0-sandpiles
 
 **Example:**
+
 3 3 3   1 3 1
 3 3 3 + 3 3 3
 3 3 3   1 3 1

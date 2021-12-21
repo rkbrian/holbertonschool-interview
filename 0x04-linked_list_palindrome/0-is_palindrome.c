@@ -30,7 +30,7 @@ listint_t *lower_rev(listint_t **head)
 int is_palindrome(listint_t **head)
 {
 	unsigned long int len = 0, i = 0;
-        int pa_flag = 1;
+	int pa_flag = 1;
 	listint_t *current = NULL, *mid_node = NULL, *rev_cur = NULL;
 
 	if (*head == NULL)
@@ -42,7 +42,7 @@ int is_palindrome(listint_t **head)
 			mid_node = mid_node->next; /*actually, it's behind middle node*/
 		current = current->next, len++;
 	}
-        current = *head, rev_cur = lower_rev(&mid_node);
+	current = *head, rev_cur = lower_rev(&mid_node), mid_node = rev_cur;
 	for (; i < len / 2; i++, current = current->next, rev_cur = rev_cur->next)
 	{
 		if (current->n != rev_cur->n)
@@ -51,5 +51,6 @@ int is_palindrome(listint_t **head)
 			break;
 		}
 	}
+	lower_rev(&mid_node);
 	return (pa_flag);
 }

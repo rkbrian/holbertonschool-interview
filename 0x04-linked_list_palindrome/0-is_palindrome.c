@@ -1,35 +1,37 @@
 #include "lists.h"
 
 /**
- * nth_node - find the nth node of the linked list
- * @head: head node of the linked list
- * @n: index / position of the target node
- * Return: the nth node
+ * lower_rev - reverse the lower half of the linked list
+ * @head: head node of the linked list lower half
+ * Return: the reversed head node
  */
-listint_t *nth_node(listint_t **head, int n)
+listint_t *lower_rev(listint_t **head)
 {
-	listint_t *current = NULL;
-	int i = 0;
+	listint_t *current = NULL, *prev = NULL, *next = NULL;
 
 	current = *head;
-	while (i < n)
-		current = current->next, i++;
-	return (current);
+	while (current)
+	{
+		next = current->next;
+		current->next = prev;
+		prev = current;
+		current = next;
+	}
+	return (prev);
 }
 
 /**
  * is_palindrome - checks if a singly linked list is a palindrome.
- *  Note: mid_node optimizes runtime, workable for list size of ULONG_MAX.
- *  But this method's time complexity is still O(n^2) ¯\(O_o)/¯
- *  I came up with this method by myself so I'm ok with it.
+ *  Note: I have to make the change (reverse the lower half linkage) of
+ *  the list to decrease the time complexity. Size up to ULONG_MAX
  * @head: head node of the linked list
  * Return: 0 if it is not a palindrome, 1 if it is a palindrome
  */
 int is_palindrome(listint_t **head)
 {
-	unsigned long int len = 0, i;
+	unsigned long int len = 0, i = 0;
         int pa_flag = 1;
-	listint_t *current = NULL, *mid_node = NULL;
+	listint_t *current = NULL, *mid_node = NULL, *rev_cur = NULL;
 
 	if (*head == NULL)
 		return (1);
@@ -40,10 +42,10 @@ int is_palindrome(listint_t **head)
 			mid_node = mid_node->next; /*actually, it's behind middle node*/
 		current = current->next, len++;
 	}
-        current = *head;
-	for (i = 0; i < len / 2; i++, current = current->next)
+        current = *head, rev_cur = lower_rev(&mid_node);
+	for (; i < len / 2; i++, current = current->next, rev_cur = rev_cur->next)
 	{
-		if (current->n != (nth_node(&mid_node, len / 2 - 1 - i))->n)
+		if (current->n != rev_cur->n)
 		{
 			pa_flag = 0;
 			break;

@@ -51,6 +51,6 @@ int is_palindrome(listint_t **head)
 			break;
 		}
 	}
-	lower_rev(&mid_node);
+	lower_rev(&mid_node); /*won't affect old list, but let me be safe*/
 	return (pa_flag);
 }

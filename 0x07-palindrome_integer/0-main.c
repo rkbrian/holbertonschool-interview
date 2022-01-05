@@ -22,7 +22,9 @@ int main(int ac, char **av)
         return (EXIT_FAILURE);
     }
 
-    n = (unsigned long)(atol(av[1]));
+    printf("ulong max: %lu\n", ULONG_MAX);
+    n = (unsigned long)(atol(av[1])); /*max = long_max*/
+    /* n = ULONG_MAX - 7664787134; debugger*/
     ret = is_palindrome(n);
 
     printf("%lu is ", n);

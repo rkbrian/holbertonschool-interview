@@ -9,14 +9,20 @@
  */
 int is_palindrome(unsigned long n)
 {
-	int ret_num = 1, pow = 0;
-	unsigned long pow_of_ten = 1;
+	int ret_num = 1;
+	unsigned long pow_of_ten = 1, pow = 0;
 
 	if (n < 10)
 		return (ret_num);
-	while (pow_of_ten <= n)
-		pow_of_ten *= 10, pow++;
-	pow /= 2, pow_of_ten /= 10; /*the middle index & the max divisor*/
+	while (pow_of_ten <= n && pow < 20)
+	{
+		pow++;
+		if (pow < 20)
+			pow_of_ten *= 10;
+	}
+	if (pow < 20)
+		pow_of_ten /= 10;
+	pow /= 2; /*the middle index & the max divisor*/
 	while (pow > 0)
 	{
 		if (n / pow_of_ten != n % 10)

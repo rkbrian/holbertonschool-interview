@@ -11,7 +11,7 @@
  * @array: Pointer to the array of integer to be printed
  * @size: Number of elements in @array
  */
-void print_array(int const *array, size_t size)
+static void print_array(int const *array, size_t size)
 {
     size_t i;
 

@@ -9,6 +9,6 @@
 
 int slide_line(int *line, size_t size, int direction);
 /*debugger*/
-void print_array(int const *array, size_t size);
+/*void print_array(int const *array, size_t size);*/
 
 #endif /*SLIDE_LINE_H*/

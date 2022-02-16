@@ -6,25 +6,22 @@
  */
 void menger(int level)
 {
-	int i, j, pow = powerranger(level);
-	char *line = NULL;
+	int i, j, pow;
 
 	if (level < 0)
 		return;
-	line = malloc(sizeof(char) * pow);
-	if (!line)
-		return;
+	pow = powerranger(level);
 	for (i = 0; i < pow; i++)
 	{
-		memset(line, '#', sizeof(char) * pow);
 		for (j = 0; j < pow; j++)
 		{
 			if (hollow_gram(i, j, pow))
-				line[j] = ' ';
+				putchar(' ');
+			else
+				putchar('#');
 		}
-		printf("%s\n", line);
+		putchar('\n');
 	}
-	free(line);
 }
 
 /**

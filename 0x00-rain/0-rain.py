@@ -9,7 +9,7 @@ import copy
 
 
 def rain(walls):
-    if walls == None:
+    if walls is None:
         return 0
     wall_i = []
     wall_h = []
@@ -22,7 +22,7 @@ def rain(walls):
         for i in range(len(wall_i) - 1):
             water_sum += wall_i[i + 1] - wall_i[i] - 1
         """water level to wall tops is going up"""
-        wall_h = list((lambda x : x - 1)(x) for x in wall_h)
+        wall_h = list((lambda x: x - 1)(x) for x in wall_h)
         """delete list elements, backward iteration technique"""
         for i in reversed(range(len(wall_h))):
             if wall_h[i] == 0:

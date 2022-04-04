@@ -16,4 +16,3 @@ def rotate_2d_matrix(matrix):
     del matrix[:new_row_len]
     for i in range(new_col_len):
         matrix.append(lily[i])
-    return matrix

@@ -1,35 +1,27 @@
 #!/usr/bin/python3
-"""Techique used: binary search"""
+"""
+Techique used: dynamic programming, Python hates huge recursion
+dp = table of solutions for each amount <= total
+dp[i] = 1 for bigger coin replaces smaller coin result
+if 1st solution is found, replace with count + 1
+if another solution is here, replace with min(count + 1, local count)
+"""
 
-
-def makeMatch(coins, total, count):
-    """Recursively search for the fewest number of coins needed to make change"""
-    if len(coins) == 1 and total % coins[0] == 0:
-        """If there is only one coin and the total is divisible by it"""
-        return int(total / coins[0] + count)
-    elif len(coins) == 1:
-        """If there is only one coin and the total is not divisible by it, failed"""
-        return -1
-    if coins[0] > total:
-        """If the first coin is not appropriate"""
-        return makeMatch(coins[1:], total, count)
-    curr = makeMatch(coins, total - coins[0], count + 1)
-    next = makeMatch(coins[1:], total, count)
-    if curr > 0 and next > 0:
-        """If both options are valid"""
-        return min(curr, next)
-    elif curr > 0:
-        return curr
-    elif next > 0:
-        return next
-    return -1
 
 def makeChange(coins, total):
-    """Big O: O(logn)"""
-    if total < 0 or len(coins) == 0:
+    if len(coins) == 0:
         return -1
-    if total == 0:
+    if total <= 0:
         return 0
     if min(coins) > total:
         return -1
-    return makeMatch(coins, total, 0)
+    dp = [-1] * (total + 1)
+    for i in coins:
+        if i < total + 1:
+            dp[i] = 1
+            for j in range(i + 1, total + 1):
+                if dp[j - i] > 0 and dp[j] == -1:
+                    dp[j] = dp[j - i] + 1
+                elif dp[j - i] > 0:
+                    dp[j] = min(dp[j - i] + 1, dp[j])
+    return dp[total]

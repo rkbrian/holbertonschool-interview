@@ -1,17 +1,17 @@
 #!/usr/bin/python3
-"""
-Find the island perimeter.
-Note: I have done this before, this version is beautified.
-The grid contains island with no lake, edges are coasts,
-coasts may attach to the borders.
-rowLen: the length of row, should be less than 100
-colLen: the length of column, should be less than 100
-xCoast: length count of the x direction facing coast
-return: the island perimeter
-"""
+""" Find the island perimeter. """
 
 
 def island_perimeter(grid):
+    """island_perimeter(grid):
+    I have done this before, this version is beautified.
+    The grid contains island with no lake, edges are coasts,
+    coasts may attach to the borders.
+    rowLen: the length of row, should be less than 100
+    colLen: the length of column, should be less than 100
+    xCoast: length count of the x direction facing coast
+    return: the island perimeter
+    """
     rowLen = len(grid)
     colLen = len(grid[0])
     westCoast = eastCoast = northCoast = southCoast = 0

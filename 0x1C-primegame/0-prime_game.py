@@ -9,13 +9,13 @@ def nextPrime(n, limit):
     """ Hardcore function that returns the next prime number after n. """
     if n == 2:
         return 3
-    oldPrime = n
     while True:
         n += 2  # skip even numbers
         if limit < n:
-            return -1
+            return -1  # no more prime numbers below limit
         flag = 0
-        for factor in range(3, oldPrime + 1, 2):  # check all odd factors
+        """ check odd factors, sq root of n locks commutative property. """
+        for factor in range(3, int(n ** 0.5) + 1, 2):
             if n % factor == 0:
                 flag += 1
                 break
@@ -39,7 +39,7 @@ def roundWinner(num):
 def isWinner(x, nums):
     """ Return the name of the winner. """
     totalRounds = min(x, len(nums))
-    if totalRounds == 0:
+    if totalRounds <= 0:
         return None
     pOneName = "Maria"
     pTwoName = "Ben"
@@ -54,5 +54,5 @@ def isWinner(x, nums):
         return pOneName
     elif playerOne < playerTwo:
         return pTwoName
-    else:
+    else:  # somehow the draw case is considered playerOne wins
         return pOneName

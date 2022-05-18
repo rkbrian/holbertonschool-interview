@@ -11,20 +11,21 @@ def nextPrime(n, limit):
         return 3
     oldPrime = n
     while True:
-        n += 2 # skip even numbers
+        n += 2  # skip even numbers
         if limit < n:
             return -1
         flag = 0
-        for factor in range(3, oldPrime + 1, 2): # check all odd factors
+        for factor in range(3, oldPrime + 1, 2):  # check all odd factors
             if n % factor == 0:
                 flag += 1
                 break
         if flag == 0:
             return n
 
+
 def roundWinner(num):
     """ Return the winner of the round. """
-    playerSwitch = -1 # 1: playerOne, -1: playerTwo
+    playerSwitch = -1  # 1: playerOne, -1: playerTwo
     prime = 2
     while prime != -1:
         playerSwitch *= -1
@@ -34,6 +35,7 @@ def roundWinner(num):
     else:
         return 2
 
+
 def isWinner(x, nums):
     """ Return the name of the winner. """
     totalRounds = min(x, len(nums))
@@ -41,7 +43,7 @@ def isWinner(x, nums):
         return None
     pOneName = "Maria"
     pTwoName = "Ben"
-    playerOne = playerTwo = 0 # the number of rounds won by each player
+    playerOne = playerTwo = 0  # the number of rounds won by each player
     for i in range(totalRounds):
         winner = roundWinner(nums[i])
         if winner == 1:
@@ -53,4 +55,4 @@ def isWinner(x, nums):
     elif playerOne < playerTwo:
         return pTwoName
     else:
-        return None
+        return pOneName

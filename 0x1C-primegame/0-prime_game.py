@@ -35,6 +35,7 @@ def roundWinner(num):
         return 2
 
 def isWinner(x, nums):
+    """ Return the name of the winner. """
     totalRounds = min(x, len(nums))
     if totalRounds == 0:
         return None

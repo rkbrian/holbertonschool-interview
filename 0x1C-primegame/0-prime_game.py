@@ -7,6 +7,8 @@ Notes: count the prime numbers only, it's faster than checking all numbers.
 
 def nextPrime(n, limit):
     """ Hardcore function that returns the next prime number after n. """
+    if limit < 2:
+        return -1
     if n == 2:
         return 3
     while True:
@@ -23,17 +25,17 @@ def nextPrime(n, limit):
             return n
 
 
-def roundWinner(num):
+def roundWinner(num, prime, startWinner):
     """ Return the winner of the round. """
-    playerSwitch = -1  # 1: playerOne, -1: playerTwo
-    prime = 2
+    playerSwitch = startWinner  # 1: playerOne, -1: playerTwo
     while prime != -1:
         playerSwitch *= -1
+        oldPrime = prime
         prime = nextPrime(prime, num)
     if playerSwitch == 1:
-        return 1
+        return oldPrime
     else:
-        return 2
+        return oldPrime * -1
 
 
 def isWinner(x, nums):
@@ -41,15 +43,22 @@ def isWinner(x, nums):
     totalRounds = min(x, len(nums))
     if totalRounds <= 0:
         return None
+    sorted(nums)  # played range won't repeat
     pOneName = "Maria"
     pTwoName = "Ben"
     playerOne = playerTwo = 0  # the number of rounds won by each player
+    prime = 2
+    startWinner = -1
     for i in range(totalRounds):
-        winner = roundWinner(nums[i])
-        if winner == 1:
+        winner = roundWinner(nums[i], prime, startWinner)
+        if winner > 0:
             playerOne += 1
-        elif winner == 2:
+            startWinner = 1
+            prime = winner
+        elif winner < 0:
             playerTwo += 1
+            startWinner = -1
+            prime = winner * -1
     if playerOne > playerTwo:
         return pOneName
     elif playerOne < playerTwo:

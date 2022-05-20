@@ -18,7 +18,7 @@ def closestPrime(n):
     while True:
         flag = 0
         for factor in range(3, int(n ** 0.5) + 1, 2):
-            if n % factor == 0:
+            if n % factor == 0 and n != factor:
                 flag += 1
                 break
         if flag == 0:
@@ -34,7 +34,7 @@ def nextPrime(n):
         n += 2  # skip even numbers
         flag = 0
         for factor in range(3, int(n ** 0.5) + 1, 2):
-            if n % factor == 0:
+            if n % factor == 0 and n != factor:
                 flag += 1
                 break
         if flag == 0:
